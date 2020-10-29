@@ -2,7 +2,7 @@ with min_ram_max_speed as (
     select min(ram) minram, max(speed) maxspeed, model
     from pc
     group by ram, speed, model
-    order by minram, speed desc
+    order by minram, maxspeed desc
     limit 1
 ),
      printer_makers as (
