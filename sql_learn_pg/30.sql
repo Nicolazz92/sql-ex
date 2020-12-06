@@ -9,8 +9,8 @@ from (select income.point point,
 
       select outcome.point point,
              outcome.date  date,
-             null   inc,
-             outcome.out  outc
+             null          inc,
+             outcome.out   outc
       from outcome
      ) data
 group by date, point

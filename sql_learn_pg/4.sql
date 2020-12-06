@@ -1,1 +1,3 @@
-select * from printer where printer.color = 'y';
+select *
+from printer
+where printer.color = 'y';

@@ -1,4 +1,4 @@
-select distinct country, cast(avg(power(bor, 3) / 2) as numeric(6,2)) as mw
+select distinct country, cast(avg(power(bor, 3) / 2) as numeric(6, 2)) as mw
 from (
          select country, name, bore bor
          from ships

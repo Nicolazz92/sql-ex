@@ -1,1 +1,4 @@
-select ship from outcomes where battle = 'North Atlantic' and result = 'sunk'
+select ship
+from outcomes
+where battle = 'North Atlantic'
+  and result = 'sunk'

@@ -1,1 +1,3 @@
-select class, country from classes where bore >= 16;
+select class, country
+from classes
+where bore >= 16;
