@@ -1,4 +1,8 @@
-select passenger.name from passenger
-join pass_in_trip pit on passenger.id_psg = pit.id_psg
-group by passenger.name, pit.place
-having count(passenger.id_psg) > 1
+with multiplaces as (select id_psg
+                     from pass_in_trip
+                     group by id_psg, place
+                     having count(*) > 1)
+
+select name
+from passenger
+where passenger.id_psg in (select id_psg from multiplaces)
