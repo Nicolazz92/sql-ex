@@ -1,7 +1,7 @@
-with trip_count as (select town_from, town_to, count(trip_no) _count
+with trip_count as (select hashtext(town_from) / 10000 + hashtext(town_to) / 10000 hash, count(trip_no) _count
                     from trip
-                    group by town_from, town_to)
+                    group by hash)
 
 select count(1)
 from trip_count tc
-where tc._count = (select max(tc1._count) from trip_count tc1)
+where tc._count >= all (select _count from trip_count)
