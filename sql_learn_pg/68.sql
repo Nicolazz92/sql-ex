@@ -4,4 +4,4 @@ with trip_count as (select town_from, town_to, count(trip_no) _count
 
 select count(1)
 from trip_count tc
-where tc._count >= all (select _count from trip_count)
+where tc._count = (select max(tc1._count) from trip_count tc1)
