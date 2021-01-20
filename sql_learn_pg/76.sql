@@ -1,4 +1,4 @@
--- кто летал каждый раз на разных местах
+-- Определить время, проведенное в полетах, для пассажиров, летавших всегда на разных местах. Вывод: имя пассажира, время в минутах.
 with _pass as (select pass_in_trip.id_psg
                from pass_in_trip
                group by pass_in_trip.id_psg
@@ -6,7 +6,9 @@ with _pass as (select pass_in_trip.id_psg
 
 select passenger.name,
        sum(
-                   extract(epoch from (greatest(time_in, time_out) - least(time_in, time_out))) / 60
+                   extract(epoch from (
+                           (case when time_in < time_out then time_in + interval '24 hours' else time_in end) - time_out
+                       )) / 60
            )
 from _pass
          inner join passenger on _pass.id_psg = passenger.id_psg
