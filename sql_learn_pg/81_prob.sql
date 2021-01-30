@@ -8,5 +8,6 @@ with max_out_year_month as (select sum(out) _sum, date_trunc('year', date) _year
 
 select code, point, date, out
 from outcome
-where date_trunc('year', date) = (select _year from max_out_year_month)
-  and date_trunc('month', date) = (select _month from max_out_year_month)
+         inner join max_out_year_month
+                    on date_trunc('year', date) = max_out_year_month._year
+                        and date_trunc('month', date) = max_out_year_month._month
